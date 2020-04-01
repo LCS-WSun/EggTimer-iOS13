@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-//No longer using individual constants 
+//No longer using individual constants
 //let softTime = 5
 //let mediumTime = 7
 //let hardTime = 12
@@ -21,12 +21,21 @@ class ViewController: UIViewController {
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
         
-       let hardness = sender.currentTitle
+        //Adding ! means in this case that yes, we are certain that the button view has a title inside of it
+       let hardness = sender.currentTitle!
  
         
-//        Solving with a dictionary
+//      ! means yes, we are positive there is no spelling error and retirieving the keys will not be a issue
+        let result = eggTimes[hardness]!
         
+        print(result)
         
+        }
+                
+}
+
+
+
         
         
         //Switch Statement solution
@@ -51,8 +60,6 @@ class ViewController: UIViewController {
 //        } else {
 //            print(hardTime)
 //        }
-    }
-            
-}
+
     
 
