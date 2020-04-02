@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //The progress bar 
+    @IBOutlet weak var progressBar: UIProgressView!
+    
+    
     //The label that we are going to use to change it to "DONE!"
     @IBOutlet weak var doneLabel: UILabel!
     
@@ -17,9 +21,8 @@ class ViewController: UIViewController {
     //Changed it to seconds and each soft, medium and hard corespond to a time
     let eggTimes = ["Soft": 3, "Medium": 4, "Hard": 7]
     
-    
-    //60 seconds in each minute
-    var secondsRemaining = 60
+    var totalTime = 0
+    var secondsPassed = 0
     
     //Create a new variable call timer
     var timer = Timer()
@@ -35,19 +38,29 @@ class ViewController: UIViewController {
         let hardness = sender.currentTitle!
         
     //The secondsRemaining is = to the eggTimes either soft, medium hard and the title of the thing to figure out which is it should do the count down from
-       secondsRemaining = eggTimes[hardness]!
+     totalTime = eggTimes[hardness]!
  
-    //Making a timer for each 1 second and we want it to repeat - //Assining our new timer variable to this function 
+    
+        progressBar.progress = 0.0
+        secondsPassed = 0
+        doneLabel.text = hardness
+        
+        
+    //Making a timer for each 1 second and we want it to repeat - //Assining our new timer variable to this function
     timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
 }
     
-//We create a function call updateTimer
+//We create a function call updateTimer //objective C is a way to call a function to a timer 
 @objc func updateTimer() {
             //If the time if greater than 0 it will print the second of it - 1 second each time
-            if secondsRemaining > 0 {
-                print("\(secondsRemaining) seconds")
-                secondsRemaining -= 1
+            if secondsPassed < totalTime {
+                
+                
+            secondsPassed += 1
+            progressBar.progress = Float(secondsPassed) / Float(totalTime)
             
+
+
             //If the timer reaches 0 it prints DONE - a else branch branch is needed 
             } else {
                 timer.invalidate() 
