@@ -14,8 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var doneLabel: UILabel!
     
     
-    //Changed it to seconds
+    //Changed it to seconds and each soft, medium and hard corespond to a time
     let eggTimes = ["Soft": 3, "Medium": 4, "Hard": 7]
+    
     
     //60 seconds in each minute
     var secondsRemaining = 60
@@ -24,18 +25,16 @@ class ViewController: UIViewController {
     var timer = Timer()
     
     //Button for Soft - Medium - Hard
-    
     @IBAction func hardnessSelected(_ sender: UIButton) {
         
     //Stops the timer if we press a new one for example
         timer.invalidate()
         
-        //Adding ! means in this case that yes, we are certain that the button view has a title inside of it
+        //Adding ! means in this case that yes, we are certain that the button view has a title inside of it, hardness is equal to the buttons title inside of it
         
         let hardness = sender.currentTitle!
         
     //The secondsRemaining is = to the eggTimes either soft, medium hard and the title of the thing to figure out which is it should do the count down from
-    
        secondsRemaining = eggTimes[hardness]!
  
     //Making a timer for each 1 second and we want it to repeat - //Assining our new timer variable to this function 
