@@ -10,18 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-//No longer using individual constants
-//let softTime = 5
-//let mediumTime = 7
-//let hardTime = 12
-    
     //The label that we are going to use to change it to "DONE!"
     @IBOutlet weak var doneLabel: UILabel!
     
     
-    
     //Changed it to seconds
-    let eggTimes = ["Soft": 300, "Medium": 420, "Hard": 720]
+    let eggTimes = ["Soft": 3, "Medium": 4, "Hard": 7]
     
     //60 seconds in each minute
     var secondsRemaining = 60
@@ -30,21 +24,22 @@ class ViewController: UIViewController {
     var timer = Timer()
     
     //Button for Soft - Medium - Hard
+    
     @IBAction func hardnessSelected(_ sender: UIButton) {
         
-        //Stops the timer if we press a new one for example
+    //Stops the timer if we press a new one for example
         timer.invalidate()
         
         //Adding ! means in this case that yes, we are certain that the button view has a title inside of it
         
-    let hardness = sender.currentTitle! //Soft, Medium, Hard
+        let hardness = sender.currentTitle!
         
     //The secondsRemaining is = to the eggTimes either soft, medium hard and the title of the thing to figure out which is it should do the count down from
-    secondsRemaining = eggTimes[hardness]!
+    
+       secondsRemaining = eggTimes[hardness]!
  
     //Making a timer for each 1 second and we want it to repeat - //Assining our new timer variable to this function 
-    timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(UIMenuController.update), userInfo: nil, repeats: true)
-        
+    timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
 }
     
 //We create a function call updateTimer
@@ -56,14 +51,15 @@ class ViewController: UIViewController {
             
             //If the timer reaches 0 it prints DONE - a else branch branch is needed 
             } else {
-                timer.invalidate()
+                timer.invalidate() 
                 doneLabel.text = "DONE!"
                 
-    }
+        }
     }
         
     
 }
+
 
 
 
